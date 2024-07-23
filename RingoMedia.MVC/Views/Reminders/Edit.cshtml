@@ -1,0 +1,27 @@
+﻿@model Reminder
+
+<h2>Edit Reminder</h2>
+
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SendingDateTime" class="control-label"></label>
+        <input asp-for="SendingDateTime" class="form-control" />
+        <span asp-validation-for="SendingDateTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

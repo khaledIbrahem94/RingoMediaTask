@@ -1,0 +1,27 @@
+﻿@model CreateDepartmentViewModel
+
+<h2> Department</h2>
+
+<form asp-action="@ViewBag.Action" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ParentDepartmentId">Parent Department</label>
+        <select asp-for="ParentDepartmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Departments, "Id", "Name",Model?.ParentDepartmentId))">
+            <option value="">-- Select Parent Department --</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="LogoFile">Logo</label>
+        @if (!string.IsNullOrEmpty(Model?.LogoPath))
+        {
+            <text>
+                <img src="@Model.LogoPath" style="width:100px;" />
+            </text>
+        }
+        <input asp-for="LogoFile"  type="file" class="form-control" accept="image/*" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

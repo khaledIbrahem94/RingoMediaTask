@@ -1,0 +1,22 @@
+﻿@model IEnumerable<RingoMedia.MVC.Models.DataBase.Department>
+
+<ul class="list-group">
+    @foreach (var department in Model)
+    {
+        <h3>@department.Name</h3>
+        <li class="list-group-item">
+            @if (!string.IsNullOrEmpty(department.Logo))
+            {
+                <img src="@department.Logo" alt="Logo" style="width: 50px; height: 50px;" />
+            } 
+            <a asp-action="Edit" asp-route-id="@department.Id" class="btn btn-secondary btn-sm ml-2">Edit</a>
+            <a asp-action="Delete" asp-route-id="@department.Id" class="btn btn-danger btn-sm ml-2">Delete</a>
+            <a asp-action="RemoveParent" asp-route-id="@department.Id" class="btn btn-warning">Remove Parent</a>
+
+            @if (department.SubDepartments != null && department.SubDepartments.Any())
+            {
+                @await Html.PartialAsync("_DepartmentList", department.SubDepartments)
+            }
+        </li>
+    }
+</ul>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Reminder>
+
+@{
+    ViewData["Title"] = "Reminders";
+}
+
+<h2>Reminders</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Reminder</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Sending Date-Time</th>
+            <th>Created Date-Time</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.SendingDateTime.ToString("g")</td>
+                <td>@item.CreatedDateTime.ToString("g")</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

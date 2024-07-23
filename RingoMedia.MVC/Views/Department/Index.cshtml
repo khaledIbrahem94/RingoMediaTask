@@ -1,0 +1,32 @@
+﻿@model ListDepartmentViewModel
+
+<div class="container">
+    <div class="row">
+        <div>
+            <a asp-action="Create" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+    <div class="row ">
+        @foreach (var dep in Model.Departments)
+        {
+            <div class="list-group-item mb-5">
+                <div class="col-md-4">
+                <h2> @dep.Department.Name</h2>
+              
+                @if (!string.IsNullOrEmpty(dep.Department.Logo))
+                {
+                     <img src="@dep.Department.Logo" alt="Logo" style="width: 50px; height: 50px;" />
+                }
+                <div class="list-group-item">
+                    <a asp-action="Edit" asp-route-id="@dep.Department.Id" class="btn btn-secondary btn-sm ml-2">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@dep.Department.Id" class="btn btn-danger btn-sm ml-2">Delete</a>
+                </div>
+            </div>
+            <div>
+                                @await Html.PartialAsync("_DepartmentList",  dep.Childs) 
+                </div>
+           </div>
+            
+        }
+    </div>
+</div>
